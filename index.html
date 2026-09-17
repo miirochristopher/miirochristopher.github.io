@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Eng. Christopher Miiro — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --c1:#ff006e; --c2:#8338ec; --c3:#3a86ff; --c4:#06ffa5;
+    --c5:#ffbe0b; --c6:#fb5607; --c7:#00f5ff;
+    --ink:#0a0a18; --paper:#0c0c1d; --card:#14142a;
+    --line:rgba(255,255,255,.08); --text:#eaeaf5; --muted:#9a9ab0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--text);overflow-x:hidden;line-height:1.55}
+
+  .bg-aurora{
+    position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(255,0,110,.25), transparent 40%),
+      radial-gradient(circle at 90% 20%, rgba(131,56,236,.25), transparent 40%),
+      radial-gradient(circle at 50% 80%, rgba(58,134,255,.25), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(6,255,165,.15), transparent 40%),
+      var(--paper);
+    animation:auroraShift 18s ease-in-out infinite alternate;
+  }
+  @keyframes auroraShift{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(40deg)}}
+  .grain{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ===================== HERO ===================== */
+  header.hero{position:relative;padding:64px 0 48px;text-align:center;overflow:hidden}
+  .hero .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;z-index:-1;animation:float 10s ease-in-out infinite alternate}
+  .blob.b1{width:380px;height:380px;background:var(--c1);top:-100px;left:-80px}
+  .blob.b2{width:420px;height:420px;background:var(--c2);top:-120px;right:-100px;animation-delay:-3s}
+  .blob.b3{width:340px;height:340px;background:var(--c3);bottom:-120px;left:30%;animation-delay:-6s}
+  @keyframes float{0%{transform:translateY(0) scale(1)}100%{transform:translateY(40px) scale(1.08)}}
+
+  .profile-frame{
+    width:340px;height:340px;margin:0 auto 36px;padding:8px;border-radius:50%;
+    background:conic-gradient(from 0deg, var(--c1), var(--c5), var(--c4), var(--c7), var(--c3), var(--c2), var(--c1));
+    animation:spin 10s linear infinite;
+    box-shadow:0 0 80px rgba(131,56,236,.55), 0 20px 60px rgba(0,0,0,.5);
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .profile-frame img{
+    width:100%;height:100%;object-fit:cover;border-radius:50%;
+    background:linear-gradient(135deg,#222,#444);
+    border:6px solid var(--paper);
+    animation:spin 10s linear infinite reverse;
+  }
+  .hero .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;
+    background:linear-gradient(90deg,rgba(255,0,110,.18),rgba(131,56,236,.18),rgba(58,134,255,.18));
+    border:1px solid var(--line);font-size:13px;color:var(--c4);letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;
+  }
+  .hero .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--c4);box-shadow:0 0 10px var(--c4);animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.4;transform:scale(.8)}}
+  h1.name{
+    font-family:'Outfit',sans-serif;font-weight:900;
+    font-size:clamp(42px,7vw,86px);line-height:1;
+    background:linear-gradient(90deg,var(--c5),var(--c1),var(--c2),var(--c3),var(--c4));
+    background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:flow 6s linear infinite;letter-spacing:-.02em;
+  }
+  @keyframes flow{to{background-position:300% 0}}
+  .hero .title{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(15px,2vw,20px);color:var(--text);margin-top:14px;opacity:.92}
+  .hero .title b{color:var(--c4);font-weight:600}
+  .hero .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;color:var(--muted);font-size:14.5px}
+  .hero .meta i{margin-right:6px}
+  .hero .meta .ic-phone{color:var(--c7)}
+  .hero .meta .ic-mail{color:var(--c5)}
+  .hero .meta .ic-loc{color:var(--c4)}
+  .hero .meta .ic-gh{color:var(--c3)}
+  .hero .meta .ic-web{color:var(--c1)}
+  .hero .meta a{color:var(--muted);text-decoration:none;transition:color .2s}
+  .hero .meta a:hover{color:var(--c5)}
+  .masked{
+    background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.18);
+    padding:3px 10px;border-radius:8px;font-variant-numeric:tabular-nums;letter-spacing:.05em;
+    cursor:default;color:var(--muted);
+  }
+  .masked .lock{font-size:10px;margin-left:6px;color:var(--c5)}
+  .public-only{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;font-style:italic;opacity:.7}
+  .hero .links{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .pill-btn{
+    padding:11px 22px;border-radius:100px;font-weight:600;font-size:14px;
+    text-decoration:none;color:#fff;letter-spacing:.02em;
+    background:linear-gradient(90deg,var(--c1),var(--c2));
+    box-shadow:0 8px 30px rgba(131,56,236,.35);
+    transition:transform .25s, box-shadow .25s;
+    display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;
+  }
+  .pill-btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,0,110,.45)}
+  .pill-btn.alt{background:linear-gradient(90deg,var(--c3),var(--c7));color:#001018;box-shadow:0 8px 30px rgba(0,245,255,.3)}
+  .pill-btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);box-shadow:none}
+  .pill-btn.ghost:hover{border-color:var(--c5);color:var(--c5)}
+  .pill-btn.download{background:linear-gradient(90deg,var(--c5),var(--c6));color:#1a1a1a;box-shadow:0 8px 30px rgba(255,190,11,.3)}
+  .pill-btn.download:hover{box-shadow:0 14px 40px rgba(251,86,7,.45)}
+
+  /* ===================== STATS ===================== */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:48px 0}
+  .stat{text-align:center;padding:22px 14px;border-radius:18px;background:linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01));border:1px solid var(--line);position:relative;overflow:hidden}
+  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg, var(--c1),var(--c5),var(--c4),var(--c7),var(--c3))}
+  .stat .n{font-size:34px;font-weight:900;font-family:'Space Grotesk';background:linear-gradient(90deg,var(--c5),var(--c1));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .l{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.16em;margin-top:6px}
+
+  /* ===================== SECTION ===================== */
+  section{padding:60px 0;position:relative}
+  .section-head{display:flex;align-items:center;gap:16px;margin-bottom:36px}
+  .section-head .num{font-family:'Space Grotesk';font-weight:700;font-size:13px;padding:6px 12px;border-radius:8px;color:#0b0b1a;background:linear-gradient(90deg,var(--c5),var(--c6))}
+  .section-head h2{font-family:'Outfit';font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.01em;background:linear-gradient(90deg,#fff, var(--c4));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .section-head .rule{flex:1;height:2px;background:linear-gradient(90deg, var(--c2),transparent);border-radius:2px}
+
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start}
+  .about-card{padding:28px;border-radius:22px;background:linear-gradient(160deg, rgba(255,0,110,.08), rgba(58,134,255,.05));border:1px solid var(--line)}
+  .about-card p{margin-bottom:14px;color:#d9d9ec}
+  .about-card p b{color:var(--c4)}
+  .about-card .lead{font-size:18px;font-weight:600;color:#fff;font-family:'Space Grotesk'}
+  .about-side{display:flex;flex-direction:column;gap:14px}
+  .info-tile{padding:18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .info-tile h4{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--c7);margin-bottom:8px;font-family:'Space Grotesk'}
+  .info-tile p{color:#d9d9ec;font-size:14.5px}
+
+  /* Tech Stack */
+  .tech-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .tech-card{padding:24px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid var(--line);position:relative;overflow:hidden}
+  .tech-card::after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;filter:blur(40px);opacity:.5;top:-40px;right:-40px}
+  .tech-card.c1::after{background:var(--c1)} .tech-card.c2::after{background:var(--c2)} .tech-card.c3::after{background:var(--c3)}
+  .tech-card.c4::after{background:var(--c4)} .tech-card.c5::after{background:var(--c5)} .tech-card.c6::after{background:var(--c6)}
+  .tech-card.c7::after{background:var(--c7)}
+  .tech-card h3{font-family:'Space Grotesk';font-size:14px;text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px;color:#fff;display:flex;align-items:center;gap:10px}
+  .tech-card h3 i{color:var(--c5)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{padding:6px 12px;border-radius:100px;font-size:12.5px;font-weight:500;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#e8e8f5;transition:all .2s}
+  .chip:hover{transform:translateY(-2px);background:rgba(255,190,11,.15);border-color:var(--c5);color:var(--c5)}
+
+  /* Experience Timeline */
+  .tl{position:relative;padding-left:28px}
+  .tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--c1),var(--c2),var(--c3),var(--c4));border-radius:2px}
+  .tl-item{position:relative;margin-bottom:36px}
+  .tl-item::before{content:"";position:absolute;left:-26px;top:6px;width:18px;height:18px;border-radius:50%;background:linear-gradient(var(--c1),var(--c2));border:3px solid var(--paper);box-shadow:0 0 0 2px var(--c1), 0 0 18px var(--c1)}
+  .tl-item.n2::before{background:linear-gradient(var(--c2),var(--c3));box-shadow:0 0 0 2px var(--c2), 0 0 18px var(--c2)}
+  .tl-item.n3::before{background:linear-gradient(var(--c3),var(--c7));box-shadow:0 0 0 2px var(--c3), 0 0 18px var(--c3)}
+  .tl-item.n4::before{background:linear-gradient(var(--c7),var(--c4));box-shadow:0 0 0 2px var(--c7), 0 0 18px var(--c7)}
+  .tl-item.n5::before{background:linear-gradient(var(--c4),var(--c5));box-shadow:0 0 0 2px var(--c4), 0 0 18px var(--c4)}
+  .tl-item.n6::before{background:linear-gradient(var(--c5),var(--c6));box-shadow:0 0 0 2px var(--c5), 0 0 18px var(--c5)}
+  .tl-item.n7::before{background:linear-gradient(var(--c6),var(--c1));box-shadow:0 0 0 2px var(--c6), 0 0 18px var(--c6)}
+  .tl-card{padding:24px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid var(--line);transition:transform .25s, border-color .25s}
+  .tl-card:hover{transform:translateY(-3px);border-color:var(--c4)}
+  .tl-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:6px}
+  .tl-head h3{font-family:'Outfit';font-weight:700;font-size:20px;color:#fff}
+  .tl-head .where{color:var(--c4);font-weight:600;font-size:14px}
+  .tl-date{font-family:'Space Grotesk';font-size:12px;letter-spacing:.1em;padding:5px 12px;border-radius:100px;background:rgba(6,255,165,.1);color:var(--c4);border:1px solid rgba(6,255,165,.25)}
+  .tl-role{color:var(--c7);font-size:13px;font-weight:500;margin-bottom:14px;font-family:'Space Grotesk'}
+  .tl-card ul{list-style:none;margin-top:6px}
+  .tl-card li{position:relative;padding-left:22px;margin-bottom:8px;font-size:14.5px;color:#d9d9ec}
+  .tl-card li::before{content:"▹";position:absolute;left:0;top:0;color:var(--c5)}
+  .tl-card li b{color:#fff}
+
+  /* Projects */
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:20px}
+  .proj{padding:24px;border-radius:20px;position:relative;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid var(--line);transition:transform .3s, border-color .3s}
+  .proj:hover{transform:translateY(-4px) scale(1.01)}
+  .proj::before{content:"";position:absolute;top:0;left:0;right:0;height:4px}
+  .proj.p1::before{background:linear-gradient(90deg,var(--c1),var(--c2))}
+  .proj.p2::before{background:linear-gradient(90deg,var(--c2),var(--c3))}
+  .proj.p3::before{background:linear-gradient(90deg,var(--c3),var(--c7))}
+  .proj.p4::before{background:linear-gradient(90deg,var(--c7),var(--c4))}
+  .proj.p5::before{background:linear-gradient(90deg,var(--c4),var(--c5))}
+  .proj.p6::before{background:linear-gradient(90deg,var(--c5),var(--c6))}
+  .proj.p7::before{background:linear-gradient(90deg,var(--c6),var(--c1))}
+  .proj .tag{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:12px;background:rgba(255,190,11,.12);color:var(--c5);border:1px solid rgba(255,190,11,.25);font-family:'Space Grotesk';font-weight:600}
+  .proj h3{font-family:'Outfit';font-weight:700;font-size:20px;color:#fff;margin-bottom:8px}
+  .proj .sub{font-size:13px;color:var(--c4);font-weight:600;margin-bottom:12px;font-family:'Space Grotesk'}
+  .proj p{color:#d9d9ec;font-size:14px;margin-bottom:14px}
+  .proj ul{list-style:none}
+  .proj li{position:relative;padding-left:18px;font-size:13.5px;color:#cfcfe2;margin-bottom:5px}
+  .proj li::before{content:"◆";position:absolute;left:0;color:var(--c1);font-size:8px;top:6px}
+
+  .arch{margin-top:24px;padding:28px;border-radius:20px;background:linear-gradient(160deg, rgba(131,56,236,.12), rgba(58,134,255,.06));border:1px solid var(--line)}
+  .arch h3{font-family:'Outfit';font-weight:700;font-size:22px;color:#fff;margin-bottom:6px}
+  .arch .sub{color:var(--c4);font-size:13px;margin-bottom:18px;font-family:'Space Grotesk'}
+  .arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+  .arch-item{padding:14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);transition:transform .2s}
+  .arch-item:hover{transform:translateY(-2px)}
+  .arch-item .ic{font-size:18px;color:var(--c5);margin-bottom:8px}
+  .arch-item .t{font-size:13px;color:#fff;font-weight:600}
+  .arch-item .d{font-size:11.5px;color:var(--muted);margin-top:2px}
+
+  /* Education */
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .edu{padding:22px;border-radius:18px;background:linear-gradient(160deg,rgba(6,255,165,.06),rgba(0,245,255,.03));border:1px solid var(--line);position:relative}
+  .edu .badge{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--c4),var(--c7));color:#001018;font-size:20px;margin-bottom:14px}
+  .edu h3{font-family:'Outfit';font-weight:700;font-size:17px;color:#fff}
+  .edu .inst{color:var(--c5);font-size:13.5px;font-weight:600;font-family:'Space Grotesk'}
+  .edu .yr{color:var(--muted);font-size:12.5px;margin-top:4px}
+
+  /* Certificates */
+  .cert-block{margin-top:42px}
+  .cert-block .sub-head{
+    display:flex;align-items:center;gap:14px;margin-bottom:22px;
+  }
+  .cert-block .sub-head .label{
+    font-family:'Space Grotesk';font-size:12.5px;text-transform:uppercase;letter-spacing:.18em;
+    padding:6px 14px;border-radius:100px;
+    background:linear-gradient(90deg,rgba(255,0,110,.18),rgba(255,190,11,.18));
+    color:var(--c5);border:1px solid rgba(255,190,11,.25);font-weight:700;
+  }
+  .cert-block .sub-head h3{
+    font-family:'Outfit';font-weight:700;font-size:22px;color:#fff;
+  }
+  .cert-block .sub-head .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--c5),transparent)}
+
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+  .cert{
+    border-radius:16px;overflow:hidden;cursor:pointer;
+    background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));
+    border:1px solid var(--line);position:relative;
+    transition:transform .3s, border-color .3s, box-shadow .3s;
+  }
+  .cert::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;z-index:2}
+  .cert.cc1::before{background:linear-gradient(90deg,var(--c2),var(--c1))}
+  .cert.cc2::before{background:linear-gradient(90deg,var(--c3),var(--c7))}
+  .cert.cc3::before{background:linear-gradient(90deg,var(--c4),var(--c7))}
+  .cert.cc4::before{background:linear-gradient(90deg,var(--c5),var(--c6))}
+  .cert:hover{
+    transform:translateY(-5px);
+    border-color:var(--c5);
+    box-shadow:0 18px 40px rgba(0,0,0,.4);
+  }
+  .cert-img{
+    width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:#000;
+    transition:transform .5s ease;
+  }
+  .cert:hover .cert-img{transform:scale(1.04)}
+  .cert-zoom{
+    position:absolute;top:12px;right:12px;z-index:3;
+    width:38px;height:38px;border-radius:50%;
+    background:rgba(0,0,0,.7);backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:13px;
+    opacity:0;transform:scale(.7);transition:all .25s;
+  }
+  .cert:hover .cert-zoom{opacity:1;transform:scale(1)}
+  .cert-body{padding:16px 18px}
+  .cert-body h4{
+    font-family:'Outfit';font-weight:700;font-size:15.5px;color:#fff;
+    margin-bottom:6px;line-height:1.3;
+  }
+  .cert-meta{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:var(--muted);font-family:'Space Grotesk';
+  }
+  .cert-meta .dur{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:3px 9px;border-radius:100px;
+    background:rgba(255,255,255,.06);color:#cfcfe2;
+  }
+  .cert-meta .dur i{font-size:10px;color:var(--c7)}
+  .cert-meta .date{color:var(--c4);font-weight:600}
+
+  /* Certificate Modal */
+  .cert-modal{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(0,0,0,.94);backdrop-filter:blur(8px);
+    display:none;align-items:center;justify-content:center;
+    padding:40px;
+    animation:modalIn .25s ease;
+  }
+  @keyframes modalIn{from{opacity:0}to{opacity:1}}
+  .cert-modal.open{display:flex}
+  .cert-modal img{
+    max-width:90%;max-height:85vh;border-radius:12px;
+    box-shadow:0 30px 100px rgba(0,0,0,.8);
+    border:1px solid rgba(255,255,255,.1);
+  }
+  .cert-modal .close{
+    position:absolute;top:24px;right:24px;
+    width:48px;height:48px;border-radius:50%;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+    color:#fff;font-size:18px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s, transform .2s;
+  }
+  .cert-modal .close:hover{background:var(--c1);transform:rotate(90deg)}
+  .cert-modal .caption{
+    position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+    color:#fff;text-align:center;font-size:14px;
+    background:rgba(0,0,0,.6);padding:10px 18px;border-radius:10px;
+    border:1px solid rgba(255,255,255,.1);max-width:90%;
+  }
+  .cert-modal .caption strong{color:var(--c5);display:block;margin-bottom:2px}
+
+  .oss{padding:28px;border-radius:20px;background:linear-gradient(160deg,rgba(255,0,110,.06),rgba(255,190,11,.04));border:1px solid var(--line)}
+  .oss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+  .oss-item{padding:14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+  .oss-item i{color:var(--c1);margin-right:8px}
+  .oss-item .t{color:#fff;font-size:14px;font-weight:600}
+  .oss-item .d{color:var(--muted);font-size:12.5px;margin-top:3px}
+
+  .regions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+  .region{padding:14px 22px;border-radius:100px;background:linear-gradient(90deg,rgba(58,134,255,.18),rgba(131,56,236,.18));border:1px solid var(--line);color:#fff;font-weight:600;font-family:'Space Grotesk';display:flex;align-items:center;gap:10px}
+  .region i{color:var(--c4)}
+
+  .refs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .ref{padding:24px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.01));border:1px solid var(--line);position:relative}
+  .ref::before{content:"❝";position:absolute;top:10px;right:18px;font-size:48px;color:var(--c2);opacity:.4;font-family:Georgia}
+  .ref h4{color:#fff;font-family:'Outfit';font-weight:700;font-size:17px}
+  .ref .role{color:var(--c5);font-size:13.5px;font-family:'Space Grotesk';margin-top:4px}
+  .ref .contact{color:var(--muted);font-size:13px;margin-top:8px}
+
+  .contact-block{padding:48px 28px;border-radius:24px;text-align:center;background:radial-gradient(circle at 20% 20%, rgba(255,0,110,.25), transparent 50%),radial-gradient(circle at 80% 80%, rgba(6,255,165,.18), transparent 50%),linear-gradient(160deg, rgba(131,56,236,.18), rgba(58,134,255,.12));border:1px solid var(--line)}
+  .contact-block h2{font-family:'Outfit';font-weight:800;font-size:clamp(28px,4vw,42px);background:linear-gradient(90deg,var(--c5),var(--c4),var(--c7));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+  .contact-block p{color:#d9d9ec;max-width:560px;margin:0 auto 22px;font-size:15px}
+  .contact-rows{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+  .contact-rows a{color:#fff;text-decoration:none;padding:12px 22px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:14px;font-weight:500;transition:all .2s;display:inline-flex;align-items:center;gap:10px}
+  .contact-rows a:hover{background:linear-gradient(90deg,var(--c1),var(--c2));border-color:transparent;transform:translateY(-2px)}
+  .contact-rows a i{color:var(--c5)}
+
+  footer{padding:36px 0 50px;text-align:center;color:var(--muted);font-size:13px}
+  footer .heart{color:var(--c1)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.tl-head{flex-direction:column;align-items:flex-start}}
+  @media (max-width:520px){.stats{grid-template-columns:1fr 1fr}.profile-frame{width:240px;height:240px}.hero{padding:40px 0 30px}}
+</style>
+</head>
+<body>
+<div class="bg-aurora"></div>
+<div class="grain"></div>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="profile-frame">
+      <img src="./images/cmiiro.jpg" alt="Eng. Christopher Miiro" />
+    </div>
+    <div class="eyebrow"><span class="dot"></span> Available for Technology Leadership &amp; AI Engagements</div>
+    <h1 class="name">Christopher Miiro</h1>
+    <p class="title">Founder &amp; Technology Lead, <b>Intuvance</b> · Digital Economy &amp; AI Practitioner · Software Engineer</p>
+    <div class="meta">
+      <span><i class="fa-solid fa-location-dot ic-loc"></i> Kampala, Uganda</span>
+      <span><i class="fa-solid fa-phone ic-phone"></i> <span class="masked">+256 ••• ••• •••<i class="fa-solid fa-lock lock"></i></span></span>
+      <span><i class="fa-solid fa-envelope ic-mail"></i> <span class="masked">christopher••••••@gmail.com<i class="fa-solid fa-lock lock"></i></span></span>
+      <span><i class="fa-brands fa-github ic-gh"></i> <a href="https://github.com/miirochristopher" target="_blank">github.com/miirochristopher</a></span>
+      <span><i class="fa-solid fa-globe ic-web"></i> <a href="https://intuvance.com" target="_blank">intuvance.com</a></span>
+    </div>
+    <p class="public-only">Contact details are hidden publicly — full CV includes phone &amp; email.</p>
+    <div class="links">
+      <button class="pill-btn download" onclick="#"><i class="fa-solid fa-file-arrow-down"></i> Download CV</button>
+      <a class="pill-btn" href="#experience"><i class="fa-solid fa-briefcase"></i> Experience</a>
+      <a class="pill-btn alt" href="#initiatives"><i class="fa-solid fa-rocket"></i> Initiatives</a>
+      <a class="pill-btn ghost" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== STATS ===================== -->
+<section class="wrap">
+  <div class="stats reveal">
+    <div class="stat"><div class="n">10+</div><div class="l">Years Building</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Countries Delivered</div></div>
+    <div class="stat"><div class="n">7+</div><div class="l">OpenMRS Projects</div></div>
+    <div class="stat"><div class="n">∞</div><div class="l">AI &amp; LLM R&amp;D</div></div>
+  </div>
+</section>
+
+<!-- ===================== PROFILE ===================== -->
+<section id="about" class="wrap">
+  <div class="section-head reveal"><span class="num">01</span><h2>Professional Profile</h2><span class="rule"></span></div>
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <p class="lead">Technology practitioner, entrepreneur and software engineer with <b>10+ years of experience</b> designing, building, integrating and supporting digital systems — spanning artificial intelligence, digital platforms, digital health, interoperability, enterprise systems and open-source technology.</p>
+      <p>Founder and technology lead at <b>Intuvance Co. Ltd</b>, a technology company developing and delivering practical digital solutions for complex real-world problems. Through Intuvance, I work across product conception, technical architecture, software development, AI integration, implementation planning, client engagement and delivery.</p>
+      <p>My recent work focuses on the intersection of <b>AI, digital infrastructure and African development challenges</b>, including offline-first digital health, AI-enabled platforms, skills and employment technology, enterprise productivity and inclusive digital solutions.</p>
+      <p>I bring a combination of <b>hands-on technical depth and practitioner-led product development</b>: taking ideas from problem definition and technical concept through architecture, prototyping, implementation, deployment and ongoing improvement.</p>
+      <p>My experience includes direct technology delivery in <b>Uganda, Kenya and Botswana</b>, as well as participation in international open-source and digital-health ecosystems.</p>
+    </div>
+    <div class="about-side">
+      <div class="info-tile reveal"><h4><i class="fa-solid fa-bullseye"></i> Current Focus</h4><p>AI · Digital Infrastructure · Healthcare · Education · Enterprise · Public-service applications</p></div>
+      <div class="info-tile reveal"><h4><i class="fa-solid fa-layer-group"></i> How I Work</h4><p>Concept → Architecture → Prototype → Implementation → Deployment → Continuous Improvement</p></div>
+      <div class="info-tile reveal"><h4><i class="fa-solid fa-network-wired"></i> Cross-cutting</h4><p>Frontend · Backend · AI · Data · Infrastructure · Interoperability</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TECH STACK ===================== -->
+<section id="tech" class="wrap">
+  <div class="section-head reveal"><span class="num">02</span><h2>Technical Expertise</h2><span class="rule"></span></div>
+  <div class="tech-wrap">
+    <div class="tech-card c1 reveal"><h3><i class="fa-solid fa-code"></i> Programming</h3><div class="chips"><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span></div></div>
+    <div class="tech-card c3 reveal"><h3><i class="fa-solid fa-window-restore"></i> Frontend</h3><div class="chips"><span class="chip">React</span><span class="chip">React Native</span></div></div>
+    <div class="tech-card c2 reveal"><h3><i class="fa-solid fa-server"></i> Backend</h3><div class="chips"><span class="chip">Spring</span><span class="chip">Spring Boot</span><span class="chip">Jakarta EE</span><span class="chip">Node.js</span></div></div>
+    <div class="tech-card c6 reveal"><h3><i class="fa-solid fa-brain"></i> AI</h3><div class="chips"><span class="chip">Ollama</span><span class="chip">Large Language Models</span><span class="chip">AI App Integration</span></div></div>
+    <div class="tech-card c4 reveal"><h3><i class="fa-solid fa-database"></i> Databases</h3><div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Neo4j</span></div></div>
+    <div class="tech-card c5 reveal"><h3><i class="fa-solid fa-sitemap"></i> Architecture</h3><div class="chips"><span class="chip">Microservices</span><span class="chip">Event-Driven</span><span class="chip">CQRS</span><span class="chip">Event Sourcing</span><span class="chip">SAGA</span><span class="chip">BPMN</span></div></div>
+    <div class="tech-card c7 reveal"><h3><i class="fa-solid fa-arrows-rotate"></i> Messaging &amp; Integration</h3><div class="chips"><span class="chip">Apache Pulsar</span><span class="chip">Redpanda</span><span class="chip">Redpanda Connect</span><span class="chip">APIs</span></div></div>
+    <div class="tech-card c1 reveal"><h3><i class="fa-solid fa-cubes"></i> Infrastructure</h3><div class="chips"><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Packer</span><span class="chip">Vagrant</span><span class="chip">VirtualBox</span><span class="chip">Colima</span></div></div>
+    <div class="tech-card c4 reveal"><h3><i class="fa-solid fa-heart-pulse"></i> Health Technology</h3><div class="chips"><span class="chip">OpenMRS</span><span class="chip">OpenMRS 3.x</span><span class="chip">OpenHIM</span><span class="chip">EMR Integration</span></div></div>
+    <div class="tech-card c6 reveal"><h3><i class="fa-solid fa-vial"></i> Testing</h3><div class="chips"><span class="chip">JUnit</span><span class="chip">Cypress</span></div></div>
+    <div class="tech-card c3 reveal"><h3><i class="fa-solid fa-screwdriver-wrench"></i> Dev Tools</h3><div class="chips"><span class="chip">Maven</span><span class="chip">Hibernate</span><span class="chip">Liquibase</span><span class="chip">Git</span></div></div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience" class="wrap">
+  <div class="section-head reveal"><span class="num">03</span><h2>Professional Experience</h2><span class="rule"></span></div>
+  <div class="tl">
+    <div class="tl-item reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Founder &amp; Technology Lead</h3><div class="where">Intuvance Co. Ltd — Uganda</div></div><span class="tl-date">2025 – Present</span></div>
+      <div class="tl-role">Founder · Technology Lead · AI &amp; Digital Infrastructure</div>
+      <ul>
+        <li>Lead technology and product development across Intuvance initiatives spanning AI, digital health, digital platforms, enterprise technology and inclusive technology.</li>
+        <li>Lead technical architecture and software development across <b>frontend, backend, infrastructure and AI</b> layers.</li>
+        <li>Translate real-world problems into technology solutions; design reusable platform infrastructure and event-driven microservices.</li>
+        <li>Lead <b>AI and local-LLM experimentation</b> using Ollama, RAG pipelines, tool gateways and locally-hosted models.</li>
+        <li>Engage with organizations and partners around technology delivery; provide technical oversight of client and internal projects.</li>
+        <li>Coordinate cross-functional software development including DevOps, observability and interoperability.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item n2 reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Software Developer / Freelance Engineer</h3><div class="where">Independent / Contract — Uganda</div></div><span class="tl-date">Jan 2025 – Present</span></div>
+      <div class="tl-role">OpenMRS · AI Integration · React Native · Node.js</div>
+      <ul>
+        <li>Contributed to <b>EMR4all</b>, including configuration and development of an OpenMRS 3.x reference distribution.</li>
+        <li>Participated in the <b>EMR4all Hackathon</b>, shipping features collaboratively with the global OpenMRS community.</li>
+        <li>Conducted research and development around <b>AI capabilities for OpenMRS</b> — clinical knowledge retrieval, MCP-based tools and streaming AI interactions.</li>
+        <li>Developed <b>local AI integrations using Ollama and locally hosted LLMs</b> for privacy-conscious clinical environments.</li>
+        <li>Worked on <b>React Native applications and supporting Node.js services</b> for mobile-first health delivery.</li>
+        <li>Provided technical consultation on health information system projects; contributed to open-source repositories.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item n3 reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Software Developer</h3><div class="where">University of Washington — DIGI</div></div><span class="tl-date">Jan 2024 – Oct 2024</span></div>
+      <div class="tl-role">OpenMRS 3.x · React · Bahmni-O3 · Digital Health</div>
+      <ul>
+        <li>Developed <b>OpenMRS 3.x user-interface functionality</b> using the O3 frontend framework and React-based ESM modules.</li>
+        <li>Developed the <b>Patient Reported Outcomes (PRO) React web application</b> and supporting OpenMRS module for capturing patient-reported data in clinical workflows.</li>
+        <li>Worked on <b>Bahmni-to-O3 EMR conversion</b>, migrating legacy interfaces to the modern OpenMRS 3.x O3 experience.</li>
+        <li>Contributed to the <b>Patient History ESM module</b> for Sustainable Global Surgeries.</li>
+        <li>Worked across frontend, backend and digital-health integration requirements in an international, multi-disciplinary team.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item n4 reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Software Developer</h3><div class="where">Intellisoft Consulting Ltd — Nairobi, Kenya</div></div><span class="tl-date">Jan 2022 – Jan 2024</span></div>
+      <div class="tl-role">BotswanaEMR · OpenMRS 2.x · UI Customization · Cross-border Health Tech</div>
+      <ul>
+        <li>Worked primarily on the <b>BotswanaEMR</b> project, customizing OpenMRS for Botswana's national health system.</li>
+        <li>Developed, tested and maintained <b>OpenMRS modules</b> in Java with Spring/Hibernate backend and React/AMP frontend.</li>
+        <li>Developed <b>UI components and pages</b>, building UI customization capabilities for OpenMRS 2.x.</li>
+        <li>Added <b>referral functionality</b> enabling patient referrals across facilities and care levels.</li>
+        <li>Developed supporting backend functionality for clinical workflows and reporting.</li>
+        <li>Participated in technical integration discussions and solution design with cross-functional and international teams.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item n5 reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Lead Software Developer</h3><div class="where">Uganda Cancer Institute — Contract</div></div><span class="tl-date">May 2023 – Jan 2024</span></div>
+      <div class="tl-role">OpenMRS · OpenHIM · Health Information Exchange · DevOps</div>
+      <ul>
+        <li>Led software development activities for the <b>Uganda Cancer Institute Health Information Exchange</b>.</li>
+        <li>Worked on <b>OpenMRS / OpenHIM integration</b> for routing clinical messages between systems and facilities.</li>
+        <li>Contributed to health information exchange functionality, mediating between EMR endpoints and external systems.</li>
+        <li>Set up the <b>DevOps deployment pipeline</b> — CI/CD, containerization, environment provisioning.</li>
+        <li>Customized the interface for a <b>multi-step cancer-screening workflow</b> tailored to clinical operations.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item n6 reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Freelance Software Developer</h3><div class="where">Open Source &amp; Independent Projects</div></div><span class="tl-date">Jul 2020 – Dec 2020</span></div>
+      <div class="tl-role">OpenMRS · React · Carbon Design System · Dev Infra</div>
+      <ul>
+        <li>Contributed to <b>OpenMRS data-model improvements</b>, refining entities and persistence mappings.</li>
+        <li>Developed the <b>Dial-A-Doctor Express React application</b> for remote consultations.</li>
+        <li>Contributed to <b>Carbon Design System repositories</b>, working on React component patterns.</li>
+        <li>Built <b>Packer, Vagrant and VirtualBox environments</b> for reproducible development infrastructure.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item n7 reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Software Developer</h3><div class="where">Cardiff Networks Uganda</div></div><span class="tl-date">Jan 2019 – Jun 2020</span></div>
+      <div class="tl-role">Web · Backend · Integrations · Fintech &amp; Media</div>
+      <ul>
+        <li>Worked on web, backend and integration projects across fintech, payments and media clients.</li>
+        <li><b>Airsave Uganda savings wallet</b> — feature development and integration of savings workflows.</li>
+        <li><b>Vision Group Uganda news application integrations</b> — content feeds and publishing pipelines.</li>
+        <li><b>Swifin Uganda payments platform integrations</b> — wallet and transaction services.</li>
+        <li>User support, application troubleshooting, bug fixing and system maintenance.</li>
+      </ul>
+    </div></div>
+    <div class="tl-item reveal"><div class="tl-card">
+      <div class="tl-head"><div><h3>Software Developer</h3><div class="where">Accelligent Group Uganda</div></div><span class="tl-date">Oct 2015 – Oct 2019</span></div>
+      <div class="tl-role">Core Merchant · Prepaid Electricity · Cloud · Mobile</div>
+      <ul>
+        <li>Worked on the <b>Core Merchant electricity recharge platform</b> — a national-scale prepaid metering product.</li>
+        <li>Implemented software changes based on requirements across web, mobile and cloud technologies.</li>
+        <li>Contributed to <b>application scaling and improvements</b> as transaction volumes grew.</li>
+        <li>Investigated and escalated technical issues; collaborated with engineering and operations teams.</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ===================== INITIATIVES ===================== -->
+<section id="initiatives" class="wrap">
+  <div class="section-head reveal"><span class="num">04</span><h2>Technology, AI &amp; Digital Economy Initiatives</h2><span class="rule"></span></div>
+  <div class="projects">
+    <div class="proj p1 reveal">
+      <span class="tag">Intuvance-led · AI · Healthcare</span>
+      <h3>IODHE</h3><div class="sub">Integrated Offline Digital Health Ecosystem</div>
+      <p>Offline-first, AI-enabled digital health infrastructure for rural and underserved healthcare environments where connectivity, infrastructure and resources are constrained.</p>
+      <ul><li>Local edge computing</li><li>Offline electronic medical records</li><li>OpenMRS integration</li><li>Health-system interoperability</li><li>Local AI &amp; LLMs</li><li>AI-supported clinical decision support</li><li>Community health-worker access</li><li>Feature-phone &amp; IVR interaction</li><li>Wearables &amp; portable diagnostics</li><li>Local-language voice interaction</li><li>Sync when connectivity returns</li></ul>
+    </div>
+    <div class="proj p2 reveal">
+      <span class="tag">R&amp;D · AI · Digital Health</span>
+      <h3>OpenMRS AI / Bedside AI</h3><div class="sub">Locally-hosted AI for Electronic Medical Records</div>
+      <p>Research &amp; development integrating locally-hosted AI into EMR systems — privacy-conscious AI at the point of care.</p>
+      <ul><li>Local LLM execution via Ollama</li><li>Clinical knowledge retrieval</li><li>AI-assisted clinical workflows</li><li>Clinical decision-support capabilities</li><li>AI tools integrated with OpenMRS</li><li>MCP-based tools</li><li>Streaming interactions for long-running AI</li><li>Evaluation &amp; monitoring of AI features</li></ul>
+    </div>
+    <div class="proj p3 reveal">
+      <span class="tag">Product Concept · Skills · Employment</span>
+      <h3>Skill Chain</h3><div class="sub">Connecting skills to economic opportunity</div>
+      <p>A digital platform connecting skills development with pathways into work and economic opportunity.</p>
+      <ul><li>Digital skills records</li><li>Learning &amp; development pathways</li><li>Skills discovery</li><li>Digital credentials</li><li>Opportunity matching</li><li>Learner / provider / employer connections</li><li>Progression into employment or enterprise</li></ul>
+    </div>
+    <div class="proj p4 reveal">
+      <span class="tag">Product Concept · Enterprise · Informal Business</span>
+      <h3>Duuka</h3><div class="sub">Digital Enterprise &amp; Inventory Platform</div>
+      <p>A business-management platform designed around operational challenges of small and informal businesses.</p>
+      <ul><li>Supplier &amp; procurement management</li><li>Stock receiving</li><li>Delivery-note processing</li><li>Inventory management</li><li>FIFO stock management</li><li>Stocktaking</li><li>Expiry tracking</li><li>Transport costs</li><li>Product-margin calculation</li><li>Supplier-to-business logistics</li></ul>
+    </div>
+    <div class="proj p5 reveal">
+      <span class="tag">Product Concept · Transport · Logistics</span>
+      <h3>TranspiQ</h3><div class="sub">Event-driven transport &amp; logistics platform</div>
+      <p>A transport and logistics platform concept within the wider Intuvance technology ecosystem.</p>
+      <ul><li>Event-driven communication</li><li>Integrations with third-party systems</li><li>Platform-based operations</li><li>Sector-specific economic applications</li><li>Common technology foundation</li></ul>
+    </div>
+    <div class="proj p6 reveal">
+      <span class="tag">Enterprise AI · Digital Transformation</span>
+      <h3>Private / Local AI for Organizations</h3><div class="sub">Self-hosted AI within organizational infrastructure</div>
+      <p>Private AI services deployed within an organization's own infrastructure — practical AI with greater control over data.</p>
+      <ul><li>Locally hosted LLMs via Ollama</li><li>HTTPS/VPN access</li><li>Central authentication</li><li>User &amp; role management</li><li>AI APIs</li><li>Retrieval-augmented generation</li><li>Internal knowledge access</li><li>Tool gateways</li></ul>
+    </div>
+    <div class="proj p7 reveal">
+      <span class="tag">Client Engagement · Accessibility</span>
+      <h3>Visual Assistance Initiative</h3><div class="sub">Inclusive education for learners with visual impairments</div>
+      <p>Intuvance was contracted to provide technology enhancements for Visual Assistance Initiative Limited, an organization working on solutions for learners with visual impairments.</p>
+      <ul><li>Reading assistance</li><li>Accessible digital content</li><li>Audio-based interaction</li><li>Offline-first operation</li><li>Low-resource educational environments</li><li>Hardware/software integration</li></ul>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><em>Note: Not an Intuvance-owned project — an example of Intuvance's client delivery work.</em></p>
+    </div>
+    <div class="proj p1 reveal">
+      <span class="tag">Professional Experience · Health HIE</span>
+      <h3>Digital Health Interoperability</h3><div class="sub">Integration of digital health systems &amp; HIE</div>
+      <p>A continuing area of technical work involving integration of digital health systems and exchange of information across platforms.</p>
+      <ul><li>OpenMRS</li><li>OpenHIM</li><li>Electronic medical records</li><li>Health information exchange</li><li>APIs &amp; system integration</li><li>Clinical workflows</li><li>Digital health infrastructure</li></ul>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px"><em>Direct implementation experience through Uganda Cancer Institute HIE, BotswanaEMR and other OpenMRS projects.</em></p>
+    </div>
+  </div>
+  <div class="arch reveal">
+    <h3><i class="fa-solid fa-cubes-stacked"></i> The Intuvance Platform</h3>
+    <div class="sub">A reusable, event-driven foundation for multiple products and initiatives</div>
+    <div class="arch-grid">
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-bolt"></i></div><div class="t">Redpanda &amp; Redpanda Connect</div><div class="d">Event streaming backbone</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-network-wired"></i></div><div class="t">Event-driven Microservices</div><div class="d">Decoupled domain services</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-plug"></i></div><div class="t">APIs &amp; Service Integration</div><div class="d">Internal &amp; external endpoints</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-building"></i></div><div class="t">Multi-tenancy</div><div class="d">Shared infra, isolated data</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-key"></i></div><div class="t">Shared IAM</div><div class="d">Identity &amp; access management</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-brain"></i></div><div class="t">Local AI via Ollama</div><div class="d">Private LLM services</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-robot"></i></div><div class="t">AI &amp; LLM Integration</div><div class="d">RAG, tools, streaming</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-database"></i></div><div class="t">Data &amp; Workflow Infra</div><div class="d">Persistence, orchestration</div></div>
+      <div class="arch-item"><div class="ic"><i class="fa-solid fa-chart-line"></i></div><div class="t">Observability</div><div class="d">Logs, metrics, traces</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OPEN SOURCE ===================== -->
+<section id="oss" class="wrap">
+  <div class="section-head reveal"><span class="num">05</span><h2>Open-Source &amp; Ecosystem Contributions</h2><span class="rule"></span></div>
+  <div class="oss reveal">
+    <p style="color:#d9d9ec">Active contributor to open-source technology, particularly the <b style="color:var(--c4)">OpenMRS ecosystem</b>.</p>
+    <div class="oss-grid">
+      <div class="oss-item"><i class="fa-solid fa-heart-pulse"></i><div class="t">OpenMRS Core &amp; Modules</div><div class="d">Java · Spring · Hibernate</div></div>
+      <div class="oss-item"><i class="fa-solid fa-code-branch"></i><div class="t">OpenMRS 2.x &amp; 3.x</div><div class="d">Legacy + O3 frontend</div></div>
+      <div class="oss-item"><i class="fa-brands fa-react"></i><div class="t">React / ESM Applications</div><div class="d">Frontend modules</div></div>
+      <div class="oss-item"><i class="fa-solid fa-palette"></i><div class="t">Carbon Design System</div><div class="d">UI component patterns</div></div>
+      <div class="oss-item"><i class="fa-solid fa-screwdriver-wrench"></i><div class="t">Development Tooling</div><div class="d">Reproducible dev environments</div></div>
+      <div class="oss-item"><i class="fa-solid fa-infinity"></i><div class="t">Infrastructure Automation</div><div class="d">Packer · Vagrant · Docker</div></div>
+      <div class="oss-item"><i class="fa-solid fa-bug"></i><div class="t">Issue Investigation</div><div class="d">Bug triage &amp; fixes</div></div>
+      <div class="oss-item"><i class="fa-solid fa-comments"></i><div class="t">Technical Discussions</div><div class="d">Community discourse</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EDUCATION + CERTIFICATIONS ===================== -->
+<section id="education" class="wrap">
+  <div class="section-head reveal"><span class="num">06</span><h2>Education &amp; Training</h2><span class="rule"></span></div>
+  <div class="edu-grid">
+    <div class="edu reveal"><div class="badge"><i class="fa-solid fa-graduation-cap"></i></div><h3>Bachelor of Science in Computer Science</h3><div class="inst">Makerere University</div><div class="yr">2012 – 2018</div></div>
+    <div class="edu reveal"><div class="badge" style="background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff"><i class="fa-solid fa-laptop-code"></i></div><h3>Full Stack Development</h3><div class="inst">Udemy</div><div class="yr">Spring Boot · ReactJS · Redux</div></div>
+    <div class="edu reveal"><div class="badge" style="background:linear-gradient(135deg,var(--c5),var(--c6));color:#1a1a1a"><i class="fa-brands fa-android"></i></div><h3>Android Developer Scholarship</h3><div class="inst">Pluralsight / ACL</div><div class="yr">2019</div></div>
+  </div>
+
+  <!-- Certificates subsection -->
+  <div class="cert-block reveal">
+    <div class="sub-head">
+      <span class="label"><i class="fa-solid fa-certificate"></i> Professional Certifications</span>
+      <h3>Pluralsight Course Certificates</h3>
+      <span class="rule"></span>
+    </div>
+    <div class="cert-grid">
+
+      <div class="cert cc1" onclick="openCert('./images/building-reactive-microservices.png','Building Reactive Microservices','Pluralsight · 1h 26m · July 24th 2024')">
+        <div class="cert-zoom"><i class="fa-solid fa-expand"></i></div>
+        <img class="cert-img" src="./images/building-reactive-microservices.png" alt="Building Reactive Microservices Certificate" />
+        <div class="cert-body">
+          <h4>Building Reactive Microservices</h4>
+          <div class="cert-meta">
+            <span class="dur"><i class="fa-solid fa-clock"></i> 1h 26m</span>
+            <span class="date">Jul 24, 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert cc2" onclick="openCert('./images/certified-kuberbetes-administrator.png','Certified Kubernetes Administrator: Working with Your Cluster','Pluralsight · 1h 12m · August 2nd 2024')">
+        <div class="cert-zoom"><i class="fa-solid fa-expand"></i></div>
+        <img class="cert-img" src="./images/certified-kuberbetes-administrator.png" alt="Certified Kubernetes Administrator Certificate" />
+        <div class="cert-body">
+          <h4>Certified Kubernetes Administrator: Working with Your Cluster</h4>
+          <div class="cert-meta">
+            <span class="dur"><i class="fa-solid fa-clock"></i> 1h 12m</span>
+            <span class="date">Aug 2, 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert cc3" onclick="openCert('./images/dapr1-fundamentals.png','Dapr 1 Fundamentals','Pluralsight · 3h 17m · July 29th 2024')">
+        <div class="cert-zoom"><i class="fa-solid fa-expand"></i></div>
+        <img class="cert-img" src="./images/dapr1-fundamentals.png" alt="Dapr 1 Fundamentals Certificate" />
+        <div class="cert-body">
+          <h4>Dapr 1 Fundamentals</h4>
+          <div class="cert-meta">
+            <span class="dur"><i class="fa-solid fa-clock"></i> 3h 17m</span>
+            <span class="date">Jul 29, 2024</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert cc4" onclick="openCert('./images/handling-streaming-data-with-apache-pulsar.png','Handling Streaming Data with Apache Pulsar 2','Pluralsight · 2h 7m · July 24th 2024')">
+        <div class="cert-zoom"><i class="fa-solid fa-expand"></i></div>
+        <img class="cert-img" src="./images/handling-streaming-data-with-apache-pulsar.png" alt="Handling Streaming Data with Apache Pulsar 2 Certificate" />
+        <div class="cert-body">
+          <h4>Handling Streaming Data with Apache Pulsar 2</h4>
+          <div class="cert-meta">
+            <span class="dur"><i class="fa-solid fa-clock"></i> 2h 7m</span>
+            <span class="date">Jul 24, 2024</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REGIONAL ===================== -->
+<section id="regions" class="wrap">
+  <div class="section-head reveal"><span class="num">07</span><h2>Regional &amp; International Experience</h2><span class="rule"></span></div>
+  <div class="regions reveal">
+    <div class="region"><i class="fa-solid fa-location-dot"></i> Uganda</div>
+    <div class="region"><i class="fa-solid fa-location-dot"></i> Kenya</div>
+    <div class="region"><i class="fa-solid fa-location-dot"></i> Botswana</div>
+    <div class="region"><i class="fa-solid fa-globe"></i> International Open-Source &amp; Digital Health Ecosystems</div>
+  </div>
+</section>
+
+<!-- ===================== REFERENCES ===================== -->
+<section id="references" class="wrap">
+  <div class="section-head reveal"><span class="num">08</span><h2>References</h2><span class="rule"></span></div>
+  <div class="refs">
+    <div class="ref reveal"><h4>Mr. Simbwa Phillip</h4><div class="role">Director, Cardiff Networks Uganda</div><div class="contact"><i class="fa-solid fa-phone"></i> <span class="masked">+256 (0)-771-••••••<i class="fa-solid fa-lock lock"></i></span></div></div>
+    <div class="ref reveal"><h4>Mr. Kizito Fredrick</h4><div class="role">Managing Director, KZT Graphics Line Ltd.</div><div class="contact"><i class="fa-solid fa-handshake"></i> Professional Reference</div></div>
+    <div class="ref reveal"><h4>Mr. Kayiwa Daniel</h4><div class="role">Senior Software Developer, OpenMRS</div><div class="contact"><i class="fa-solid fa-phone"></i> <span class="masked">+256 (0)-782-••••••<i class="fa-solid fa-lock lock"></i></span></div></div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="wrap">
+  <div class="contact-block reveal">
+    <h2>Let's build something that matters.</h2>
+    <p>Available for technology leadership, AI integration, digital health, enterprise platforms and practitioner-led product development across Africa and beyond. Full contact details available in the downloadable CV.</p>
+    <div class="contact-rows">
+      <button class="pill-btn download" onclick="#" style="font-family:'Outfit',sans-serif"><i class="fa-solid fa-file-arrow-down"></i> Download Full CV</button>
+      <a href="https://github.com/miirochristopher" target="_blank"><i class="fa-brands fa-github"></i> github.com/miirochristopher</a>
+      <a href="https://intuvance.com" target="_blank"><i class="fa-solid fa-globe"></i> intuvance.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year"></span> Eng. Christopher Miiro · Kampala, Uganda · <span class="heart">♥</span></p>
+  </div>
+</footer>
+
+<!-- Certificate Modal -->
+<div class="cert-modal" id="cert-modal" onclick="if(event.target===this)closeCert()">
+  <button class="close" onclick="closeCert()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+  <img id="cert-modal-img" src="" alt="Certificate" />
+  <div class="caption" id="cert-modal-caption"></div>
+</div>
+
+<!-- ===================== B&W CV TEMPLATE (Silicon Valley Pro Style) ===================== -->
+<script type="text/template" id="cv-template">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Christopher Miiro — Curriculum Vitae</title>
+<style>
+  @page { size: A4; margin: 14mm 16mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #000; font-size: 10pt; line-height: 1.5; -webkit-print-color-adjust: exact; }
+  .name { font-size: 26pt; font-weight: 700; letter-spacing: 1.5pt; text-transform: uppercase; text-align: center; margin-bottom: 4pt; }
+  .title { text-align: center; font-size: 10.5pt; font-weight: 400; color: #333; margin-bottom: 6pt; }
+  .contact { text-align: center; font-size: 9.5pt; color: #000; margin-bottom: 2pt; }
+  .contact a { color: #000; text-decoration: none; }
+  .header { border-bottom: 1.5pt solid #000; padding-bottom: 10pt; margin-bottom: 14pt; }
+  h2 { font-size: 10.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5pt; border-bottom: 0.5pt solid #000; padding-bottom: 2pt; margin: 14pt 0 8pt; }
+  h3 { font-size: 10.5pt; font-weight: 700; margin-bottom: 1pt; color: #000; }
+  .role { font-size: 10pt; font-style: italic; color: #222; margin-bottom: 2pt; }
+  .date { font-size: 9pt; color: #444; font-weight: 500; white-space: nowrap; }
+  .exp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  ul { margin: 3pt 0 6pt 16pt; }
+  li { margin-bottom: 2pt; font-size: 9.8pt; line-height: 1.45; }
+  p { margin-bottom: 4pt; font-size: 10pt; line-height: 1.5; }
+  .exp-item { margin-bottom: 9pt; page-break-inside: avoid; }
+  .skills-grid p { font-size: 9.8pt; margin-bottom: 2pt; }
+  .skills-grid strong { font-weight: 700; }
+  .references-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10pt; margin-top: 4pt; }
+  .ref { font-size: 9.5pt; line-height: 1.4; }
+  .ref strong { font-weight: 700; display: block; font-size: 10pt; margin-bottom: 1pt; }
+  .ref .role-i { font-style: italic; color: #333; }
+  .section { page-break-inside: avoid; }
+  .summary { font-size: 10pt; }
+  .summary p { margin-bottom: 5pt; }
+  strong { font-weight: 700; }
+  em { font-style: italic; color: #333; }
+  @media print { body { -webkit-print-color-adjust: exact; } }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="name">Christopher Miiro</div>
+    <div class="title">Founder &amp; Technology Lead, Intuvance &middot; Digital Economy &amp; AI Practitioner &middot; Software Engineer</div>
+    <div class="contact">Kampala, Uganda &middot; +256 785 880 997 &middot; christopher.miiro@gmail.com</div>
+    <div class="contact">github.com/miirochristopher &middot; intuvance.com</div>
+  </div>
+
+  <div class="section">
+    <h2>Professional Summary</h2>
+    <div class="summary">
+      <p>Technology practitioner, entrepreneur and software engineer with <strong>10+ years of experience designing, building, integrating and supporting digital systems</strong>, with experience spanning artificial intelligence, digital platforms, digital health, interoperability, enterprise systems and open-source technology.</p>
+      <p>Founder and technology lead at <strong>Intuvance Co. Ltd</strong>, a technology company developing and delivering practical digital solutions for complex real-world problems. Through Intuvance, I work across product conception, technical architecture, software development, AI integration, implementation planning, client engagement and delivery.</p>
+      <p>Recent work focuses on the intersection of <strong>AI, digital infrastructure and African development challenges</strong>, including offline-first digital health, AI-enabled platforms, skills and employment technology, enterprise productivity and inclusive digital solutions. I bring a combination of hands-on technical depth and practitioner-led product development — taking ideas from problem definition and technical concept through architecture, prototyping, implementation, deployment and ongoing improvement. Direct technology delivery in Uganda, Kenya and Botswana, plus participation in international open-source and digital-health ecosystems.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Professional Experience</h2>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Founder &amp; Technology Lead — Intuvance Co. Ltd</h3><span class="date">2025 – Present &middot; Uganda</span></div>
+      <div class="role">Founder &middot; Technology Lead &middot; AI &amp; Digital Infrastructure</div>
+      <ul><li>Lead technology and product development across Intuvance initiatives spanning AI, digital health, digital platforms, enterprise technology and inclusive technology.</li><li>Lead technical architecture and software development across frontend, backend, infrastructure and AI layers.</li><li>Translate real-world problems into technology solutions; design reusable platform infrastructure and event-driven microservices.</li><li>Lead AI and local-LLM experimentation using Ollama, RAG pipelines, tool gateways and locally-hosted models.</li><li>Engage with organizations and partners around technology delivery; provide technical oversight of client and internal projects.</li><li>Coordinate cross-functional software development including DevOps, observability and interoperability.</li></ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Software Developer / Freelance Engineer — Independent</h3><span class="date">Jan 2025 – Present &middot; Uganda</span></div>
+      <div class="role">OpenMRS &middot; AI Integration &middot; React Native &middot; Node.js</div>
+      <ul><li>Contributed to EMR4all, including configuration and development of an OpenMRS 3.x reference distribution.</li><li>Participated in the EMR4all Hackathon, shipping features collaboratively with the global OpenMRS community.</li><li>Conducted R&amp;D around AI capabilities for OpenMRS — clinical knowledge retrieval, MCP-based tools and streaming AI interactions.</li><li>Developed local AI integrations using Ollama and locally hosted LLMs for privacy-conscious clinical environments.</li><li>Worked on React Native applications and supporting Node.js services for mobile-first health delivery.</li><li>Provided technical consultation on health information system projects; contributed to open-source repositories.</li></ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Software Developer — University of Washington (DIGI)</h3><span class="date">Jan 2024 – Oct 2024</span></div>
+      <div class="role">OpenMRS 3.x &middot; React &middot; Bahmni-O3 &middot; Digital Health</div>
+      <ul><li>Developed OpenMRS 3.x user-interface functionality using the O3 frontend framework and React-based ESM modules.</li><li>Developed the Patient Reported Outcomes (PRO) React web application and supporting OpenMRS module for capturing patient-reported data in clinical workflows.</li><li>Worked on Bahmni-to-O3 EMR conversion, migrating legacy interfaces to the modern OpenMRS 3.x O3 experience.</li><li>Contributed to the Patient History ESM module for Sustainable Global Surgeries.</li><li>Worked across frontend, backend and digital-health integration requirements in an international, multi-disciplinary team.</li></ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Software Developer — Intellisoft Consulting Ltd</h3><span class="date">Jan 2022 – Jan 2024 &middot; Nairobi, Kenya</span></div>
+      <div class="role">BotswanaEMR &middot; OpenMRS 2.x &middot; UI Customization &middot; Cross-border Health Tech</div>
+      <ul><li>Worked primarily on the BotswanaEMR project, customizing OpenMRS for Botswana's national health system.</li><li>Developed, tested and maintained OpenMRS modules in Java with Spring/Hibernate backend and React/AMP frontend.</li><li>Developed UI components and pages, building UI customization capabilities for OpenMRS 2.x.</li><li>Added referral functionality enabling patient referrals across facilities and care levels.</li><li>Developed supporting backend functionality for clinical workflows and reporting.</li><li>Participated in technical integration discussions and solution design with cross-functional and international teams.</li></ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Lead Software Developer — Uganda Cancer Institute</h3><span class="date">May 2023 – Jan 2024 &middot; Contract</span></div>
+      <div class="role">OpenMRS &middot; OpenHIM &middot; Health Information Exchange &middot; DevOps</div>
+      <ul><li>Led software development activities for the Uganda Cancer Institute Health Information Exchange.</li><li>Worked on OpenMRS / OpenHIM integration for routing clinical messages between systems and facilities.</li><li>Contributed to health information exchange functionality, mediating between EMR endpoints and external systems.</li><li>Set up the DevOps deployment pipeline — CI/CD, containerization, environment provisioning.</li><li>Customized the interface for a multi-step cancer-screening workflow tailored to clinical operations.</li><li>Worked across development, interoperability and deployment in a regulated clinical environment.</li></ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Freelance Software Developer — Open Source &amp; Independent</h3><span class="date">Jul 2020 – Dec 2020</span></div>
+      <div class="role">OpenMRS &middot; React &middot; Carbon Design System &middot; Dev Infrastructure</div>
+      <ul><li>Contributed to OpenMRS data-model improvements, refining entities and persistence mappings.</li><li>Developed the Dial-A-Doctor Express React application for remote consultations.</li><li>Contributed to Carbon Design System repositories, working on React component patterns.</li><li>Built Packer, Vagrant and VirtualBox environments for reproducible development infrastructure.</li><li>Participated in technical discussions around Hibernate/JPA and deployment automation.</li></ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Software Developer — Cardiff Networks Uganda</h3><span class="date">Jan 2019 – Jun 2020</span></div>
+      <div class="role">Web &middot; Backend &middot; Integrations &middot; Fintech &amp; Media</div>
+      <ul><li>Worked on web, backend and integration projects across fintech, payments and media clients.</li><li>Airsave Uganda savings wallet — feature development and integration of savings workflows.</li><li>Vision Group Uganda news application integrations — content feeds and publishing pipelines.</li><li>Swifin Uganda payments platform integrations — wallet and transaction services.</li><li>User support, application troubleshooting, bug fixing and system maintenance.</li></ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-head"><h3>Software Developer — Accelligent Group Uganda</h3><span class="date">Oct 2015 – Oct 2019</span></div>
+      <div class="role">Core Merchant &middot; Prepaid Electricity &middot; Cloud &middot; Mobile</div>
+      <ul><li>Worked on the Core Merchant electricity recharge platform — a national-scale prepaid metering product.</li><li>Implemented software changes based on requirements across web, mobile and cloud technologies.</li><li>Contributed to application scaling and improvements as transaction volumes grew.</li><li>Investigated and escalated technical issues; collaborated with engineering and operations teams.</li></ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Selected Technology, AI &amp; Digital Economy Initiatives</h2>
+    <div class="exp-item"><h3>IODHE — Integrated Offline Digital Health Ecosystem</h3><div class="role">Intuvance-led initiative &middot; AI &middot; Digital Infrastructure &middot; Healthcare</div><p>Offline-first, AI-enabled digital health infrastructure concept for rural and underserved healthcare environments. Combines local edge computing, offline EMR, OpenMRS integration, health-system interoperability, local AI/LLMs, AI-supported clinical decision support, community health-worker access, feature-phone/IVR interaction, wearables and portable diagnostics, local-language voice interaction, and synchronization when connectivity becomes available.</p></div>
+    <div class="exp-item"><h3>OpenMRS AI / Bedside AI</h3><div class="role">Intuvance-led R&amp;D &middot; Artificial Intelligence &middot; Digital Health</div><p>Research and development focused on integrating locally hosted AI into electronic medical record systems. Explores local LLM execution via Ollama, clinical knowledge retrieval, AI-assisted workflows, clinical decision-support, AI tools integrated with OpenMRS, MCP-based tools, streaming interactions for longer-running AI processes, and evaluation and monitoring of AI-assisted functionality.</p></div>
+    <div class="exp-item"><h3>Skill Chain</h3><div class="role">Intuvance product concept &middot; Skills Development &middot; Employment</div><p>Digital platform concept connecting skills development with pathways into work and economic opportunity — digital skills records, learning and development pathways, skills discovery, digital credentials, opportunity matching, connections between learners / training providers / employers, and progression from learning into employment or enterprise opportunities.</p></div>
+    <div class="exp-item"><h3>Duuka — Digital Enterprise &amp; Inventory Platform</h3><div class="role">Intuvance product concept &middot; Enterprise Productivity &middot; Informal Business</div><p>Business-management platform concept designed around operational challenges faced by small and informal businesses — supplier and procurement management, stock receiving, delivery-note processing, inventory management, FIFO stock management, stocktaking, expiry tracking, transport costs, product-margin calculation, and supplier-to-business logistics.</p></div>
+    <div class="exp-item"><h3>TranspiQ</h3><div class="role">Intuvance product concept &middot; Transport &middot; Logistics</div><p>Transport and logistics platform concept being developed within the wider Intuvance technology ecosystem — digital infrastructure for transport-related workflows including event-driven communication, integrations and platform-based operations.</p></div>
+    <div class="exp-item"><h3>Private / Local AI for Organizations</h3><div class="role">Intuvance technology initiative &middot; Enterprise AI &middot; Digital Transformation</div><p>An initiative exploring how organizations can deploy private AI services within their own infrastructure. Architecture includes locally hosted LLMs, Ollama, HTTPS/VPN access, central authentication, user and role management, AI APIs, retrieval-augmented generation, internal knowledge access and tool gateways.</p></div>
+    <div class="exp-item"><h3>Visual Assistance Initiative — Client Engagement</h3><div class="role">Intuvance Client Project &middot; Inclusive Education &middot; Accessibility</div><p>Intuvance was contracted to provide technology enhancements for Visual Assistance Initiative Limited, an organization working on solutions for learners with visual impairments. Engagement covers reading assistance, accessible digital content, audio-based interaction, offline-first operation, low-resource educational environments and hardware/software integration. <em>Note: Not an Intuvance-owned project; an example of Intuvance's client delivery and technology-development work.</em></p></div>
+    <div class="exp-item"><h3>Digital Health Interoperability</h3><div class="role">Intuvance / Professional Technology Experience &middot; Health Information Exchange</div><p>A continuing area of technical work involving integration of digital health systems and exchange of information across platforms — OpenMRS, OpenHIM, electronic medical records, health information exchange, APIs, system integration, clinical workflows and digital health infrastructure. Direct implementation experience through the Uganda Cancer Institute Health Information Exchange, BotswanaEMR and other OpenMRS projects.</p></div>
+  </div>
+
+  <div class="section">
+    <h2>The Intuvance Platform</h2>
+    <p>A reusable, event-driven platform intended to support multiple products and technology initiatives. Architecture incorporates: Redpanda and Redpanda Connect; event-driven microservices; APIs and service integration; multi-tenancy; shared identity and access management; local/private AI services using Ollama; AI and LLM integration; data and workflow infrastructure; observability and operational tooling. The platform is designed so different applications share common infrastructure while retaining their own sector-specific functionality.</p>
+  </div>
+
+  <div class="section">
+    <h2>Open-Source &amp; Ecosystem Contributions</h2>
+    <p>Active contributor to open-source technology, particularly the OpenMRS ecosystem. Experience includes OpenMRS core and module development; OpenMRS 2.x and 3.x; React/ESM applications; Carbon Design System; development tooling; infrastructure automation; technical issue investigation; and open-source technical discussions.</p>
+  </div>
+
+  <div class="section">
+    <h2>Technical Expertise</h2>
+    <div class="skills-grid">
+      <p><strong>Programming:</strong> Java, JavaScript, TypeScript, Python</p>
+      <p><strong>Frontend:</strong> React, React Native</p>
+      <p><strong>Backend:</strong> Spring, Spring Boot, Jakarta EE, Node.js</p>
+      <p><strong>AI:</strong> Ollama, Large Language Models, AI application integration</p>
+      <p><strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, Neo4j</p>
+      <p><strong>Architecture:</strong> Microservices, Event-Driven Architecture, CQRS, Event Sourcing, SAGA, BPMN</p>
+      <p><strong>Messaging &amp; Integration:</strong> Apache Pulsar, Redpanda, Redpanda Connect, APIs</p>
+      <p><strong>Infrastructure:</strong> Docker, Kubernetes, Packer, Vagrant, VirtualBox, Colima</p>
+      <p><strong>Health Technology:</strong> OpenMRS, OpenMRS 3.x, OpenHIM, EMR integration</p>
+      <p><strong>Testing:</strong> JUnit, Cypress</p>
+      <p><strong>Development Tools:</strong> Maven, Hibernate, Liquibase, Git</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Education &amp; Training</h2>
+    <div class="exp-item"><div class="exp-head"><h3>Bachelor of Science in Computer Science — Makerere University</h3><span class="date">2012 – 2018</span></div></div>
+    <div class="exp-item"><div class="exp-head"><h3>Full Stack Development — Udemy</h3><span class="date">Spring Boot, ReactJS and Redux</span></div></div>
+    <div class="exp-item"><div class="exp-head"><h3>Android Developer Scholarship — Pluralsight / ACL</h3><span class="date">2019</span></div></div>
+  </div>
+
+  <div class="section">
+    <h2>Professional Certifications</h2>
+    <div class="exp-item"><div class="exp-head"><h3>Building Reactive Microservices — Pluralsight</h3><span class="date">July 24, 2024 &middot; 1h 26m</span></div></div>
+    <div class="exp-item"><div class="exp-head"><h3>Handling Streaming Data with Apache Pulsar 2 — Pluralsight</h3><span class="date">July 24, 2024 &middot; 2h 7m</span></div></div>
+    <div class="exp-item"><div class="exp-head"><h3>Dapr 1 Fundamentals — Pluralsight</h3><span class="date">July 29, 2024 &middot; 3h 17m</span></div></div>
+    <div class="exp-item"><div class="exp-head"><h3>Certified Kubernetes Administrator: Working with Your Cluster — Pluralsight</h3><span class="date">August 2, 2024 &middot; 1h 12m</span></div></div>
+  </div>
+
+  <div class="section">
+    <h2>Regional &amp; International Experience</h2>
+    <p>Uganda &middot; Kenya &middot; Botswana &middot; International Open-Source &amp; Digital Health Ecosystems</p>
+  </div>
+
+  <div class="section">
+    <h2>References</h2>
+    <div class="references-grid">
+      <div class="ref"><strong>Mr. Simbwa Phillip</strong><span class="role-i">Director, Cardiff Networks Uganda</span><br>+256 (0)-771-257625</div>
+      <div class="ref"><strong>Mr. Kizito Fredrick</strong><span class="role-i">Managing Director, KZT Graphics Line Ltd.</span></div>
+      <div class="ref"><strong>Mr. Kayiwa Daniel</strong><span class="role-i">Senior Software Developer, OpenMRS</span><br>+256 (0)-782-380638</div>
+    </div>
+  </div>
+
+</body>
+</html>
+</script>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Subtle parallax on hero blobs
+  const blobs = document.querySelectorAll('.hero .blob');
+  document.addEventListener('mousemove',(e)=>{
+    const x = (e.clientX / window.innerWidth - .5);
+    const y = (e.clientY / window.innerHeight - .5);
+    blobs.forEach((b,i)=>{ const s = (i+1)*8; b.style.transform = `translate(${x*s}px, ${y*s}px)`; });
+  });
+
+  // Certificate modal
+  function openCert(src, title, caption){
+    const modal = document.getElementById('cert-modal');
+    const img = document.getElementById('cert-modal-img');
+    const cap = document.getElementById('cert-modal-caption');
+    img.src = src;
+    img.alt = title;
+    cap.innerHTML = '<strong>' + title + '</strong>' + caption;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCert(){
+    document.getElementById('cert-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeCert();
+  });
+
+  // Download CV (B&W Silicon Valley pro style)
+  function downloadCV(){
+    const template = document.getElementById('cv-template').textContent;
+    const win = window.open('', '_blank');
+    if(!win){ alert('Please allow pop-ups to download the CV.'); return; }
+    win.document.open();
+    win.document.write(template);
+    win.document.close();
+    setTimeout(()=>{
+      win.focus();
+      win.print();
+    }, 500);
+  }
+</script>
+</body>
+</html>
